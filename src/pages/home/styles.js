@@ -8,6 +8,7 @@ export const Main = styled.SafeAreaView`
 `;
 
 export const Container = styled.View`
+  flex: 1;
   padding-horizontal: 20px;
 `;
 
@@ -33,6 +34,5 @@ export const Cart = styled.TouchableOpacity``;
 export const CartIcon = styled(Icon)``;
 
 export const Content = styled.View`
-  background-color: blue;
   flex: 2;
 `;

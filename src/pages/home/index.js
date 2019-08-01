@@ -22,11 +22,11 @@ const Home = ({ navigation }) => {
         <StatusBar barStyle="light-content" backgroundColor="#FFF" />
 
         <Header>
-          <Refresh onPress={() => console.tron.log("cart")}>
+          <Refresh onPress={() => console.tron.log("Refresh")}>
             <RefreshIcon name="history" size={20} color="#FFF" />
           </Refresh>
           <Title>Pizzaria Don Juan</Title>
-          <Cart onPress={() => console.tron.log("cart")}>
+          <Cart onPress={() => console.tron.log("Cart")}>
             <CartIcon name="shopping-bag" size={20} color="#FFF" />
           </Cart>
         </Header>

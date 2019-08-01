@@ -6,10 +6,23 @@ import {
 
 import SignIn from "~/pages/sign-in";
 import SignUp from "~/pages/sign-up";
+import Home from "~/pages/home";
+
+const HomeSwitchNavigation = createSwitchNavigator({
+  Home: {
+    screen: Home
+  },
+  Auth: {
+    screen: SignIn
+  },
+  Home: {
+    screen: Home
+  }
+});
 
 const accountStackNavigation = createStackNavigator({
   SignIn: {
-    screen: SignIn,
+    screen: HomeSwitchNavigation,
     navigationOptions: {
       header: null
     }
@@ -26,7 +39,8 @@ const Routes = createAppContainer(accountStackNavigation);
 
 export const Pages = {
   SignIn: "SignIn",
-  SignUp: "SignUp"
+  SignUp: "SignUp",
+  Home: "Home"
 };
 
 export default Routes;

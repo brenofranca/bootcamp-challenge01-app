@@ -64,7 +64,7 @@ const Main = ({ navigation }) => {
           onChangeText={password => setAuth({ ...auth, password })}
         />
 
-        <ButtonSubmit>
+        <ButtonSubmit onPress={() => navigation.navigate(Pages.Home)}>
           <ButtonSubmitText>Entrar</ButtonSubmitText>
         </ButtonSubmit>
 
