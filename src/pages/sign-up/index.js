@@ -2,26 +2,25 @@ import React, { useState } from "react";
 
 import { StatusBar } from "react-native";
 
-import { Pages } from "~/routes";
-
 import {
   Container,
   ImageBackground,
   Form,
   Logo,
+  InputName,
   InputEmail,
   InputPassword,
   ButtonSubmit,
   ButtonSubmitText,
-  ButtonSignUp,
-  ButtonSignUpText,
+  ButtonBack,
+  ButtonBackText,
   LinearGradientStyle
 } from "./styles";
 
 import LinearGradient from "react-native-linear-gradient";
 
-const Main = ({ navigation }) => {
-  const [auth, setAuth] = useState({ email: "", password: "" });
+const SignUp = ({ navigation }) => {
+  const [account, setAccount] = useState({ name: "", email: "", password: "" });
 
   return (
     <Container>
@@ -43,14 +42,23 @@ const Main = ({ navigation }) => {
           resizeMode="contain"
         />
 
+        <InputName
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholder="Nome Completo"
+          underlineColorAndroid="transparent"
+          value={account.name}
+          onChangeText={name => setAccount({ ...account, name })}
+        />
+
         <InputEmail
           emailAddress
           autoCapitalize="none"
           autoCorrect={false}
           placeholder="Seu e-mail"
           underlineColorAndroid="transparent"
-          value={auth.email}
-          onChangeText={email => setAuth({ ...auth, email })}
+          value={account.email}
+          onChangeText={email => setAccount({ ...account, email })}
         />
 
         <InputPassword
@@ -60,20 +68,20 @@ const Main = ({ navigation }) => {
           autoCorrect={false}
           placeholder="Sua senha secreta"
           underlineColorAndroid="transparent"
-          value={auth.password}
-          onChangeText={password => setAuth({ ...auth, password })}
+          value={account.password}
+          onChangeText={password => setAccount({ ...account, password })}
         />
 
         <ButtonSubmit>
-          <ButtonSubmitText>Entrar</ButtonSubmitText>
+          <ButtonSubmitText>Criar conta</ButtonSubmitText>
         </ButtonSubmit>
 
-        <ButtonSignUp onPress={() => navigation.navigate(Pages.SignUp)}>
-          <ButtonSignUpText>Criar conta gratuita</ButtonSignUpText>
-        </ButtonSignUp>
+        <ButtonBack onPress={() => navigation.goBack()}>
+          <ButtonBackText>Ja tenho login</ButtonBackText>
+        </ButtonBack>
       </Form>
     </Container>
   );
 };
 
-export default Main;
+export default SignUp;
