@@ -2,10 +2,18 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 import AppNavigator from "./navigators";
 
-export default createAppContainer(createSwitchNavigator(AppNavigator));
-
 export const Pages = {
-  SignIn: "SignIn",
-  SignUp: "SignUp",
-  Home: "Home"
+  SignInScreen: "SignInScreen",
+  SignUpScreen: "SignUpScreen",
+  HomeStack: "HomeStack",
+  AccountStack: "AccountStack"
+};
+
+export default logged => {
+  return createAppContainer(
+    createSwitchNavigator(
+      { ...AppNavigator },
+      { initialRouteName: logged ? Pages.HomeStack : Pages.AccountStack }
+    )
+  );
 };

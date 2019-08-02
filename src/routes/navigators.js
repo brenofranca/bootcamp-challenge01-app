@@ -33,8 +33,8 @@ const AccountStackNavigation = createStackNavigator({
 });
 
 export const AppRoutes = {
-  Account: AccountStackNavigation,
-  Home: HomeSwitchNavigation
+  AccountStack: AccountStackNavigation,
+  HomeStack: HomeSwitchNavigation
 };
 
 export default AppRoutes;

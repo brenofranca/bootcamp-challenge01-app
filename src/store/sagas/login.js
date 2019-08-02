@@ -22,7 +22,7 @@ export function* postLogin(action) {
 
     yield put(LoginCreators.loginSuccess(data));
 
-    navigate(Pages.Home);
+    navigate(Pages.HomeStack);
   } catch (error) {
     yield put(LoginCreators.loginFailure());
   }
