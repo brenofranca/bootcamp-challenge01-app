@@ -12,15 +12,15 @@ import {
   TimeText
 } from "./styles";
 
-const ProductCategoryItem = ({ product, navigation }) => {
+const ProductCategoryItem = ({ product }) => {
   return (
     <Item>
       <Image
-        source={require("../../../assets/images/Categories/pizza.jpg")}
+        source={{ uri: product.file.url }}
         imageStyle={{ borderRadius: 10 }}
       />
       <Content>
-        <Title>{product.title}</Title>
+        <Title>{product.name}</Title>
         <Description>
           <DescriptionText>{product.description}</DescriptionText>
         </Description>

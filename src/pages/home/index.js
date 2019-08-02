@@ -1,5 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import { StatusBar } from "react-native";
+
+import { bindActionCreators } from "redux";
+
+import { connect } from "react-redux";
+
+import { Creators as ProductCategoriesCreators } from "~/store/ducks/product-categories";
 
 import {
   Main,
@@ -15,14 +22,18 @@ import {
 
 import ProductCategoryList from "~/components/product-category/list";
 
-const Home = ({ navigation }) => {
+const Home = ({ productCategories, ProductCategoriesRequest }) => {
+  useEffect(() => {
+    ProductCategoriesRequest();
+  }, []);
+
   return (
     <Main>
       <Container>
         <StatusBar barStyle="light-content" backgroundColor="#FFF" />
 
         <Header>
-          <Refresh onPress={() => console.tron.log("Refresh")}>
+          <Refresh onPress={() => ProductCategoriesRequest()}>
             <RefreshIcon name="history" size={20} color="#FFF" />
           </Refresh>
           <Title>Pizzaria Don Juan</Title>
@@ -31,11 +42,21 @@ const Home = ({ navigation }) => {
           </Cart>
         </Header>
         <Content>
-          <ProductCategoryList />
+          <ProductCategoryList categories={productCategories.data} />
         </Content>
       </Container>
     </Main>
   );
 };
 
-export default Home;
+const mapStateToProps = state => ({
+  productCategories: state.productCategories
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...ProductCategoriesCreators }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
