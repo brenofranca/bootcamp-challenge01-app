@@ -1,8 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
+
+import login from "./login";
 
 const reducers = combineReducers({
-  // Remova essa linha depois de adicionar seus ducks
-  example: () => [],
+  login
 });
 
 export default reducers;

@@ -1,46 +1,11 @@
-import {
-  createAppContainer,
-  createStackNavigator,
-  createSwitchNavigator
-} from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
-import SignIn from "~/pages/sign-in";
-import SignUp from "~/pages/sign-up";
-import Home from "~/pages/home";
+import AppNavigator from "./navigators";
 
-const HomeSwitchNavigation = createSwitchNavigator({
-  Home: {
-    screen: Home
-  },
-  Auth: {
-    screen: SignIn
-  },
-  Home: {
-    screen: Home
-  }
-});
-
-const accountStackNavigation = createStackNavigator({
-  SignIn: {
-    screen: HomeSwitchNavigation,
-    navigationOptions: {
-      header: null
-    }
-  },
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: {
-      header: null
-    }
-  }
-});
-
-const Routes = createAppContainer(accountStackNavigation);
+export default createAppContainer(createSwitchNavigator(AppNavigator));
 
 export const Pages = {
   SignIn: "SignIn",
   SignUp: "SignUp",
   Home: "Home"
 };
-
-export default Routes;

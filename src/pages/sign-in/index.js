@@ -2,6 +2,11 @@ import React, { useState } from "react";
 
 import { StatusBar } from "react-native";
 
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
+import { Creators as LoginCreators } from "~/store/ducks/login";
+
 import { Pages } from "~/routes";
 
 import {
@@ -20,8 +25,11 @@ import {
 
 import LinearGradient from "react-native-linear-gradient";
 
-const Main = ({ navigation }) => {
-  const [auth, setAuth] = useState({ email: "", password: "" });
+const Main = ({ navigation, loginRequest }) => {
+  const [auth, setAuth] = useState({
+    username: "franciscobreno.si@gmail.com",
+    password: "secret"
+  });
 
   return (
     <Container>
@@ -49,8 +57,8 @@ const Main = ({ navigation }) => {
           autoCorrect={false}
           placeholder="Seu e-mail"
           underlineColorAndroid="transparent"
-          value={auth.email}
-          onChangeText={email => setAuth({ ...auth, email })}
+          value={auth.username}
+          onChangeText={username => setAuth({ ...auth, username })}
         />
 
         <InputPassword
@@ -64,7 +72,7 @@ const Main = ({ navigation }) => {
           onChangeText={password => setAuth({ ...auth, password })}
         />
 
-        <ButtonSubmit onPress={() => navigation.navigate(Pages.Home)}>
+        <ButtonSubmit onPress={() => loginRequest(auth)}>
           <ButtonSubmitText>Entrar</ButtonSubmitText>
         </ButtonSubmit>
 
@@ -76,4 +84,14 @@ const Main = ({ navigation }) => {
   );
 };
 
-export default Main;
+const mapStateToProps = state => ({
+  login: state.login
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...LoginCreators }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);
