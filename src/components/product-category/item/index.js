@@ -12,9 +12,9 @@ import {
   TimeText
 } from "./styles";
 
-const ProductCategoryItem = ({ product }) => {
+const ProductCategoryItem = ({ onPress, product }) => {
   return (
-    <Item>
+    <Item onPress={() => onPress(product)}>
       <Image
         source={{ uri: product.avatar.url }}
         imageStyle={{ borderRadius: 10 }}

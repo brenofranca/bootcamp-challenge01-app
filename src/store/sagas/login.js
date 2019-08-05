@@ -1,4 +1,3 @@
-import axios from "axios";
 import { put, call } from "redux-saga/effects";
 import AsyncStorage from "@react-native-community/async-storage";
 

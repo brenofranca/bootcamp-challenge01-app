@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-export const Item = styled.View`
+export const Item = styled.TouchableOpacity`
   background-color: #fff;
   border-radius: 4px;
   flex-direction: row;

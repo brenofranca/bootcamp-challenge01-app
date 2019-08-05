@@ -1,20 +1,26 @@
 import React from "react";
 
+import { bindActionCreators } from "redux";
+
+import { connect } from "react-redux";
+
+import { Creators as ProductTypesCreators } from "~/store/ducks/product-types";
+
 import { Container, Items } from "./styles";
 
 import ProductCategoryItem from "../item";
 
-const ProductCategoryList = ({ categories }) => {
-  _keyExtractor = (item, index) => String(item.id);
+const ProductCategoryList = ({ categories, ProductTypesRequest }) => {
+  _keyExtractor = item => String(item.id);
 
-  _onPressItem = item => {};
+  _onPressItem = product => ProductTypesRequest(product.id);
 
   _renderItem = ({ item }) => (
     <ProductCategoryItem
       id={item.id}
       title={item.title}
       product={item}
-      onPress={this._onPressItem(item)}
+      onPress={() => this._onPressItem(item)}
     />
   );
 
@@ -29,4 +35,14 @@ const ProductCategoryList = ({ categories }) => {
   );
 };
 
-export default ProductCategoryList;
+const mapStateToProps = state => ({
+  productTypes: state.productTypes
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...ProductTypesCreators }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductCategoryList);
