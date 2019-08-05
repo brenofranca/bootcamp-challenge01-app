@@ -16,7 +16,7 @@ const ProductCategoryItem = ({ product }) => {
   return (
     <Item>
       <Image
-        source={{ uri: product.file.url }}
+        source={{ uri: product.avatar.url }}
         imageStyle={{ borderRadius: 10 }}
       />
       <Content>
