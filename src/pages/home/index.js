@@ -17,7 +17,10 @@ import {
   Title,
   Cart,
   CartIcon,
-  Content
+  Content,
+  LoadingContainer,
+  Loading,
+  LoadingText
 } from "./styles";
 
 import ProductCategoryList from "~/components/product-category/list";
@@ -42,7 +45,14 @@ const Home = ({ productCategories, ProductCategoriesRequest }) => {
           </Cart>
         </Header>
         <Content>
-          <ProductCategoryList categories={productCategories.data} />
+          {productCategories.processing ? (
+            <LoadingContainer>
+              <Loading size={"large"} />
+              <LoadingText>Carregando categorias de produtos.</LoadingText>
+            </LoadingContainer>
+          ) : (
+            <ProductCategoryList categories={productCategories.data} />
+          )}
         </Content>
       </Container>
     </Main>

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-community/async-storage";
 import { StatusBar } from "react-native";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import axios from "axios";
 
 import { Creators as LoginCreators } from "~/store/ducks/login";
 
@@ -25,11 +25,30 @@ import {
 
 import LinearGradient from "react-native-linear-gradient";
 
-const Main = ({ navigation, loginRequest }) => {
+const Main = ({ navigation, loginRequest, loginAttempt }) => {
   const [auth, setAuth] = useState({
     username: "franciscobreno.si@gmail.com",
     password: "secret"
   });
+
+  const [userAuthenticated, setUserAuthenticated] = useState({
+    checked: false,
+    logged: false,
+    data: {}
+  });
+  useEffect(() => {
+    async function fetchUserAuthenticated() {
+      const dataPersistedLogin = await AsyncStorage.getItem("@login");
+
+      if (!!dataPersistedLogin) {
+        const dataLogin = JSON.parse(dataPersistedLogin);
+
+        loginAttempt(dataLogin);
+      }
+    }
+
+    fetchUserAuthenticated();
+  }, []);
 
   return (
     <Container>
@@ -76,7 +95,7 @@ const Main = ({ navigation, loginRequest }) => {
           <ButtonSubmitText>Entrar</ButtonSubmitText>
         </ButtonSubmit>
 
-        <ButtonSignUp onPress={() => navigation.navigate(Pages.SignUp)}>
+        <ButtonSignUp onPress={() => navigation.navigate(Pages.SignUpScreen)}>
           <ButtonSignUpText>Criar conta gratuita</ButtonSignUpText>
         </ButtonSignUp>
       </Form>

@@ -1,6 +1,7 @@
 import Immutable from "seamless-immutable";
 
 export const Types = {
+  SET_LOGIN: "login/SET_LOGIN",
   REQUEST: "login/REQUEST",
   SUCCESS: "login/SUCCESS",
   FAILURE: "login/FAILURE"
@@ -38,6 +39,11 @@ export default function login(state = initialState, action) {
 }
 
 export const Creators = {
+  loginAttempt: data => ({
+    type: Types.SET_LOGIN,
+    payload: { data }
+  }),
+
   loginRequest: credentials => ({
     type: Types.REQUEST,
     payload: { credentials }

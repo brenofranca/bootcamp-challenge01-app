@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { colors } from "~/styles";
 
 export const Main = styled.SafeAreaView`
   background-color: #0a2030;
@@ -10,6 +11,22 @@ export const Main = styled.SafeAreaView`
 export const Container = styled.View`
   flex: 1;
   padding-horizontal: 20px;
+`;
+
+export const LoadingContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Loading = styled.ActivityIndicator`
+  color: #fff;
+`;
+
+export const LoadingText = styled.Text`
+  color: ${colors.regular};
+  margin-top: 10px;
+  font-size: 12px;
 `;
 
 export const Header = styled.View`

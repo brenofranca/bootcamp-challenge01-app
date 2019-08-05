@@ -1,9 +1,9 @@
 import Immutable from "seamless-immutable";
 
 export const Types = {
-  REQUEST: "login/REQUEST",
-  SUCCESS: "login/SUCCESS",
-  FAILURE: "login/FAILURE"
+  REQUEST: "productCategories/REQUEST",
+  SUCCESS: "productCategories/SUCCESS",
+  FAILURE: "productCategories/FAILURE"
 };
 
 const initialState = Immutable({
@@ -19,7 +19,7 @@ export default function productCategories(state = initialState, action) {
       return {
         ...state,
         data: action.payload.data,
-        processing: false
+        processing: null
       };
     case Types.FAILURE:
       return {
