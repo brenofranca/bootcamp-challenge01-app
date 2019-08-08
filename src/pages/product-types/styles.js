@@ -33,7 +33,6 @@ export const Header = styled.View`
   height: 80px;
   align-items: center;
   flex-direction: row;
-  justify-content: space-between;
 `;
 
 export const Refresh = styled.TouchableOpacity``;
@@ -44,11 +43,8 @@ export const Title = styled.Text`
   color: #ffffff;
   font-size: 18px;
   font-weight: bold;
+  margin-left: 10px;
 `;
-
-export const Cart = styled.TouchableOpacity``;
-
-export const CartIcon = styled(Icon)``;
 
 export const Content = styled.View`
   flex: 2;

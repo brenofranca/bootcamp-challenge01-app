@@ -1,6 +1,7 @@
 import { put, call } from "redux-saga/effects";
 
 import api from "~/services/api";
+import { Pages } from "~/routes";
 import { navigate } from "~/services/navigation";
 
 import { Creators as ProductTypes } from "~/store/ducks/product-types";
@@ -20,7 +21,7 @@ export function* getProductTypes(action) {
 
     yield put(ProductTypes.Success(data));
 
-    navigate(Pages.HomeStack);
+    navigate(Pages.ProductTypesScreen);
   } catch (error) {
     yield put(ProductTypes.Failure());
   }

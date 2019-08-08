@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { StatusBar } from "react-native";
 
@@ -15,25 +15,27 @@ import {
   Refresh,
   RefreshIcon,
   Title,
-  Cart,
-  CartIcon,
   Content,
   LoadingContainer,
   Loading,
   LoadingText
 } from "./styles";
 
-const ProductTypes = ({ productTypes }) => {
-  useEffect(() => {}, []);
+import ProductTypesList from "./components/list";
 
+const ProductTypes = ({ navigation, productTypes }) => {
   return (
     <Main>
       <Container>
         <StatusBar barStyle="light-content" backgroundColor="#FFF" />
 
         <Header>
-          <Refresh onPress={() => {}}>
-            <RefreshIcon name="history" size={20} color="#FFF" />
+          <Refresh
+            onPress={() => {
+              navigation.goBack(null);
+            }}
+          >
+            <RefreshIcon name="chevron-left" size={15} color="#FFF" />
           </Refresh>
           <Title>Selecione um tipo</Title>
         </Header>
@@ -44,7 +46,7 @@ const ProductTypes = ({ productTypes }) => {
               <LoadingText>Carregando tipos de produto.</LoadingText>
             </LoadingContainer>
           ) : (
-            <LoadingText>Carregando tipos de produto.</LoadingText>
+            <ProductTypesList products={productTypes.data} />
           )}
         </Content>
       </Container>

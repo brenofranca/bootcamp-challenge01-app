@@ -13,14 +13,14 @@ import ProductCategoryItem from "../item";
 const ProductCategoryList = ({ categories, ProductTypesRequest }) => {
   _keyExtractor = item => String(item.id);
 
-  _onPressItem = product => ProductTypesRequest(product.id);
+  _onCategoryPressed = product => ProductTypesRequest(product.id);
 
   _renderItem = ({ item }) => (
     <ProductCategoryItem
       id={item.id}
       title={item.title}
       product={item}
-      onPress={() => this._onPressItem(item)}
+      onPress={() => this._onCategoryPressed(item)}
     />
   );
 
@@ -35,9 +35,7 @@ const ProductCategoryList = ({ categories, ProductTypesRequest }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  productTypes: state.productTypes
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ ...ProductTypesCreators }, dispatch);

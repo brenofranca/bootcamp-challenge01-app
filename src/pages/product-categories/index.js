@@ -23,11 +23,12 @@ import {
   LoadingText
 } from "./styles";
 
-import ProductCategoryList from "~/components/product-category/list";
+import ProductCategoryList from "./components/list";
 
 const Home = ({ productCategories, ProductCategoriesRequest }) => {
   useEffect(() => {
     ProductCategoriesRequest();
+    return;
   }, []);
 
   return (

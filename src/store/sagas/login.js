@@ -33,7 +33,7 @@ export function* postLoginAttempt(action) {
 
     yield put(LoginCreators.loginSuccess(data));
 
-    navigate(Pages.HomeStack);
+    navigate(Pages.ProductsStack);
   } catch (error) {
     yield put(LoginCreators.loginFailure());
   }

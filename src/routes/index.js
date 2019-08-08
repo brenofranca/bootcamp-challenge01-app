@@ -5,8 +5,10 @@ import AppNavigator from "./navigators";
 export const Pages = {
   SignInSreen: "SignIn",
   SignUpScreen: "SignUp",
-  HomeStack: "HomeStack",
-  AccountStack: "AccountStack"
+  AccountStack: "AccountStack",
+  ProductsStack: "ProductsStack",
+  ProductTypesScreen: "ProductTypes",
+  ProductTCategorieScreen: "ProductTCategorie"
 };
 
 export default logged => {

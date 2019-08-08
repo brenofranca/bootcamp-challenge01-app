@@ -9,12 +9,12 @@ import {
 
 import SignInScreen from "~/pages/sign-in";
 import SignUpScreen from "~/pages/sign-up";
-import HomeScreen from "~/pages/home";
 import ProductTypesScreen from "~/pages/product-types";
+import ProductCategoriesScreen from "~/pages/product-categories";
 
-const HomeStackNavigation = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
+const ProductsStackNavigation = createStackNavigator({
+  ProductCategories: {
+    screen: ProductCategoriesScreen,
     navigationOptions: {
       header: null
     }
@@ -24,12 +24,6 @@ const HomeStackNavigation = createStackNavigator({
     navigationOptions: {
       header: null
     }
-  }
-});
-
-const HomeSwitchNavigation = createSwitchNavigator({
-  Home: {
-    screen: HomeStackNavigation
   }
 });
 
@@ -50,7 +44,7 @@ const AccountStackNavigation = createStackNavigator({
 
 export const AppRoutes = {
   AccountStack: AccountStackNavigation,
-  HomeStack: HomeSwitchNavigation
+  ProductsStack: ProductsStackNavigation
 };
 
 export default AppRoutes;

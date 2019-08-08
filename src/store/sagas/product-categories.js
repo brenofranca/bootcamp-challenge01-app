@@ -14,7 +14,6 @@ export function* getProductCategories() {
 
     yield put(ProductCategories.Success(data));
   } catch (error) {
-    console.tron.log(error);
     yield put(ProductCategories.Failure());
   }
 }
