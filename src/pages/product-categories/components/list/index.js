@@ -5,15 +5,23 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { Creators as ProductTypesCreators } from "~/store/ducks/product-types";
+import { Creators as ProductCategoriesCreators } from "~/store/ducks/product-categories";
 
 import { Container, Items } from "./styles";
 
 import ProductCategoryItem from "../item";
 
-const ProductCategoryList = ({ categories, ProductTypesRequest }) => {
+const ProductCategoryList = ({
+  categories,
+  ProductTypesRequest,
+  ProductCategoriesSelected
+}) => {
   _keyExtractor = item => String(item.id);
 
-  _onCategoryPressed = product => ProductTypesRequest(product.id);
+  _onCategoryPressed = product => {
+    ProductCategoriesSelected(product);
+    ProductTypesRequest(product.id);
+  };
 
   _renderItem = ({ item }) => (
     <ProductCategoryItem
@@ -38,7 +46,10 @@ const ProductCategoryList = ({ categories, ProductTypesRequest }) => {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...ProductTypesCreators }, dispatch);
+  bindActionCreators(
+    { ...ProductTypesCreators, ...ProductCategoriesCreators },
+    dispatch
+  );
 
 export default connect(
   mapStateToProps,

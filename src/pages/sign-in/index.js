@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import axios from "axios";
 
+import { Creators as CartCreators } from "~/store/ducks/cart";
 import { Creators as LoginCreators } from "~/store/ducks/login";
 
 import { Pages } from "~/routes";
@@ -25,19 +26,14 @@ import {
 
 import LinearGradient from "react-native-linear-gradient";
 
-const Main = ({ navigation, loginRequest, loginAttempt }) => {
+const Main = ({ navigation, loginRequest, loginAttempt, RefreshDataCart }) => {
   const [auth, setAuth] = useState({
     username: "franciscobreno.si@gmail.com",
     password: "secret"
   });
 
-  const [userAuthenticated, setUserAuthenticated] = useState({
-    checked: false,
-    logged: false,
-    data: {}
-  });
   useEffect(() => {
-    async function fetchUserAuthenticated() {
+    async function loadIfUserAuthenticated() {
       const dataPersistedLogin = await AsyncStorage.getItem("@login");
 
       if (!!dataPersistedLogin) {
@@ -47,7 +43,21 @@ const Main = ({ navigation, loginRequest, loginAttempt }) => {
       }
     }
 
-    fetchUserAuthenticated();
+    loadIfUserAuthenticated();
+  }, []);
+
+  useEffect(() => {
+    async function loadCartItems() {
+      const dataPersistedCart = await AsyncStorage.getItem("@cart");
+
+      if (!!dataPersistedCart) {
+        const dataCart = JSON.parse(dataPersistedCart);
+
+        RefreshDataCart(dataCart);
+      }
+    }
+
+    loadCartItems();
   }, []);
 
   return (
@@ -108,7 +118,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...LoginCreators }, dispatch);
+  bindActionCreators({ ...CartCreators, ...LoginCreators }, dispatch);
 
 export default connect(
   mapStateToProps,

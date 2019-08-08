@@ -12,12 +12,16 @@ import { Types as ProductTypes } from "~/store/ducks/product-types";
 import { getProductSizes } from "./product-sizes";
 import { Types as ProductSizes } from "~/store/ducks/product-sizes";
 
+import { addProductToCart } from "./cart";
+import { Types as CartTypes } from "~/store/ducks/cart";
+
 export default function* rootSaga() {
   return yield all([
     takeLatest(LoginTypes.REQUEST, postLogin),
     takeLatest(LoginTypes.SET_LOGIN, postLoginAttempt),
     takeLatest(ProductCategories.REQUEST, getProductCategories),
     takeLatest(ProductTypes.REQUEST, getProductTypes),
-    takeLatest(ProductSizes.REQUEST, getProductSizes)
+    takeLatest(ProductSizes.REQUEST, getProductSizes),
+    takeLatest(CartTypes.ADD_TO_CART, addProductToCart)
   ]);
 }

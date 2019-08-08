@@ -1,5 +1,12 @@
 import React from "react";
 
+import { bindActionCreators } from "redux";
+
+import { connect } from "react-redux";
+
+import { Creators as CartCreators } from "~/store/ducks/cart";
+import { Creators as ProductSizesCreators } from "~/store/ducks/product-sizes";
+
 import {
   Items,
   Container,
@@ -10,10 +17,13 @@ import {
 
 import ProductItem from "../item";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, addProductToCart, ProductSizesSelected }) => {
   _keyExtractor = item => String(item.id);
 
-  _onProductSizePressed = product => console.tron.log(product);
+  _onProductSizePressed = product => {
+    ProductSizesSelected(product);
+    addProductToCart({ productPrice: product, quantity: 1 });
+  };
 
   _renderItem = ({ item }) => (
     <ProductItem
@@ -45,4 +55,12 @@ const ProductList = ({ products }) => {
   );
 };
 
-export default ProductList;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...CartCreators, ...ProductSizesCreators }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductList);
