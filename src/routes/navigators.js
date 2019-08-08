@@ -10,6 +10,7 @@ import {
 import SignInScreen from "~/pages/sign-in";
 import SignUpScreen from "~/pages/sign-up";
 import ProductTypesScreen from "~/pages/product-types";
+import ProductSizesScreen from "~/pages/product-sizes";
 import ProductCategoriesScreen from "~/pages/product-categories";
 
 const ProductsStackNavigation = createStackNavigator({
@@ -21,6 +22,12 @@ const ProductsStackNavigation = createStackNavigator({
   },
   ProductTypes: {
     screen: ProductTypesScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  ProductSizes: {
+    screen: ProductSizesScreen,
     navigationOptions: {
       header: null
     }

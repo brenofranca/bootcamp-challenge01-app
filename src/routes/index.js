@@ -8,6 +8,7 @@ export const Pages = {
   AccountStack: "AccountStack",
   ProductsStack: "ProductsStack",
   ProductTypesScreen: "ProductTypes",
+  ProductSizesScreen: "ProductSizes",
   ProductTCategorieScreen: "ProductTCategorie"
 };
 
