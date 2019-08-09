@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useEffect } from "react";
 import { StatusBar } from "react-native";
-
-import { bindActionCreators } from "redux";
-
 import { connect } from "react-redux";
-
+import { bindActionCreators } from "redux";
+import { Pages } from "~/routes/index";
+import { navigate } from "~/services/navigation";
 import { Creators as ProductCategoriesCreators } from "~/store/ducks/product-categories";
-
+import ProductCategoryList from "./components/list";
 import {
-  Main,
-  Container,
-  Header,
-  Refresh,
-  RefreshIcon,
-  Title,
   Cart,
   CartIcon,
+  Container,
   Content,
-  LoadingContainer,
+  Header,
   Loading,
-  LoadingText
+  LoadingContainer,
+  LoadingText,
+  Main,
+  Refresh,
+  RefreshIcon,
+  Title
 } from "./styles";
-
-import ProductCategoryList from "./components/list";
 
 const Home = ({ productCategories, ProductCategoriesRequest }) => {
   useEffect(() => {
@@ -41,8 +37,8 @@ const Home = ({ productCategories, ProductCategoriesRequest }) => {
             <RefreshIcon name="history" size={20} color="#FFF" />
           </Refresh>
           <Title>Pizzaria Don Juan</Title>
-          <Cart onPress={() => console.tron.log("Cart")}>
-            <CartIcon name="shopping-bag" size={20} color="#FFF" />
+          <Cart onPress={() => navigate(Pages.CartScreen)}>
+            <CartIcon name="shopping-bag" size={17} color="#FFF" />
           </Cart>
         </Header>
         <Content>

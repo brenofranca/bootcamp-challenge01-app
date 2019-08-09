@@ -33,7 +33,6 @@ export const Header = styled.View`
   height: 80px;
   align-items: center;
   flex-direction: row;
-  justify-content: space-between;
 `;
 
 export const Refresh = styled.TouchableOpacity``;
@@ -44,20 +43,43 @@ export const Title = styled.Text`
   color: #ffffff;
   font-size: 18px;
   font-weight: bold;
-`;
-
-export const Cart = styled.TouchableOpacity`
-  background-color: red;
-  padding: 10px;
-  border-radius: 50px;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const CartIcon = styled(Icon)`
-  margin-bottom: 1px;
+  margin-left: 10px;
 `;
 
 export const Content = styled.View`
-  flex: 2;
+  flex: 1;
 `;
+
+export const Footer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const ButtonOrderFinish = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  background-color: #e52a3e;
+  padding: 8px;
+  border-radius: 15px;
+  width: 170px;
+  justify-content: space-around;
+`;
+
+export const ButtonOrderFinishIcon = styled(Icon)``;
+
+export const ButtonOrderFinishText = styled.Text`
+  font-size: 13px;
+  letter-spacing: 0.1;
+  color: #fff;
+  text-transform: uppercase;
+`;
+
+export const ButtonProductAdd = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+  border-radius: 50px;
+  width: 30px;
+`;
+
+export const ButtonProductAddIcon = styled(Icon)``;

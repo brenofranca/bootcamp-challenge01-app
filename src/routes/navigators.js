@@ -1,17 +1,10 @@
-import React from "react";
-
-import {
-  createStackNavigator,
-  createSwitchNavigator,
-  createDrawerNavigator,
-  createMaterialTopTabNavigator
-} from "react-navigation";
-
+import { createStackNavigator } from "react-navigation";
+import CartScreen from "~/pages/cart";
+import ProductCategoriesScreen from "~/pages/product-categories";
+import ProductSizesScreen from "~/pages/product-sizes";
+import ProductTypesScreen from "~/pages/product-types";
 import SignInScreen from "~/pages/sign-in";
 import SignUpScreen from "~/pages/sign-up";
-import ProductTypesScreen from "~/pages/product-types";
-import ProductSizesScreen from "~/pages/product-sizes";
-import ProductCategoriesScreen from "~/pages/product-categories";
 
 const ProductsStackNavigation = createStackNavigator({
   ProductCategories: {
@@ -28,6 +21,12 @@ const ProductsStackNavigation = createStackNavigator({
   },
   ProductSizes: {
     screen: ProductSizesScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Cart: {
+    screen: CartScreen,
     navigationOptions: {
       header: null
     }

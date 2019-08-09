@@ -1,5 +1,4 @@
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-
 import AppNavigator from "./navigators";
 
 export const Pages = {
@@ -7,9 +6,10 @@ export const Pages = {
   SignUpScreen: "SignUp",
   AccountStack: "AccountStack",
   ProductsStack: "ProductsStack",
+  CartScreen: "Cart",
   ProductTypesScreen: "ProductTypes",
   ProductSizesScreen: "ProductSizes",
-  ProductTCategorieScreen: "ProductTCategorie"
+  ProductCategoriesScreen: "ProductCategories"
 };
 
 export default logged => {
