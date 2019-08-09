@@ -20,7 +20,8 @@ import {
   Main,
   Refresh,
   RefreshIcon,
-  Title
+  Title,
+  TotalPrice
 } from "./styles";
 
 const Cart = ({ cart, navigation, isEmptyCart }) => {
@@ -37,6 +38,7 @@ const Cart = ({ cart, navigation, isEmptyCart }) => {
             <RefreshIcon name="chevron-left" size={15} color="#FFF" />
           </Refresh>
           <Title>Carrinho</Title>
+          <TotalPrice>{cart.data.totalPresentation}</TotalPrice>
         </Header>
         <Content>
           {isEmptyCart ? (

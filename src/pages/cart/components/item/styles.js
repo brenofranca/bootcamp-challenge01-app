@@ -84,7 +84,7 @@ export const Actions = styled.View`
   justify-content: center;
 `;
 export const ActionDelete = styled.TouchableOpacity`
-  padding: 10px;
+  margin-right: 10px;
 `;
 
 export const ActionDeleteIcon = styled(Icon)``;

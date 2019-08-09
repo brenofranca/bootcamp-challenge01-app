@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import { put, select } from "redux-saga/effects";
+import { Pages } from "~/routes";
+import { navigate } from "~/services/navigation";
 import { Creators as CartTypes } from "~/store/ducks/cart";
 
 export function* addProductToCart(action) {
@@ -20,6 +22,13 @@ export function* addProductToCart(action) {
 
     const totalCart = total + totalProductPrice;
 
+    const totalPresentation = yield formatPricePresentation(
+      total + totalProductPrice
+    );
+    const totalProductPricePresentation = yield formatPricePresentation(
+      totalProductPrice
+    );
+
     if (!productToCart) {
       const productType = yield select(state => state.productTypes.selected);
 
@@ -29,10 +38,12 @@ export function* addProductToCart(action) {
 
       cart = {
         total: totalCart,
+        totalPresentation,
         products: [
           ...products,
           {
             total: totalProductPrice,
+            totalPresentation: totalProductPricePresentation,
             quantity,
             productType,
             productPrice,
@@ -55,6 +66,7 @@ export function* addProductToCart(action) {
 
       cart = {
         total: totalCart,
+        totalPresentation,
         products: productsUpdated
       };
     }
@@ -62,6 +74,8 @@ export function* addProductToCart(action) {
     yield put(CartTypes.Success(cart));
 
     yield AsyncStorage.setItem("@cart", JSON.stringify(cart));
+
+    navigate(Pages.CartScreen);
   } catch (error) {
     yield put(CartTypes.Failure());
   }
@@ -90,4 +104,13 @@ export function* removeProductOfCart(action) {
   } catch (error) {
     yield put(CartTypes.Failure());
   }
+}
+
+export function* formatPricePresentation(price) {
+  const price_currency = (price / 100)
+    .toFixed(2)
+    .replace(".", ",")
+    .replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+
+  return `R$ ${price_currency}`;
 }

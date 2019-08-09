@@ -10,7 +10,8 @@ export const Types = {
 const initialState = Immutable({
   data: {
     total: 0,
-    products: []
+    products: [],
+    totalPresentation: "R$ 0"
   },
   processing: null
 });

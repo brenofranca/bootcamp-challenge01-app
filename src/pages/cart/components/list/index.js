@@ -14,7 +14,7 @@ const ProductList = ({ cart, removeProductOfCart }) => {
   _renderItem = ({ item }) => (
     <ListItem
       id={item.id}
-      product={item}
+      cart={item}
       onPress={() => this._onProductDeletePressed(item)}
     />
   );

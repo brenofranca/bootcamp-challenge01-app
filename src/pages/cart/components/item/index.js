@@ -16,30 +16,30 @@ import {
   SizeTitle
 } from "./styles";
 
-const ListItem = ({ onPress, product }) => {
+const ListItem = ({ onPress, cart }) => {
   return (
     <Item>
       <Image
-        source={{ uri: product.productType.avatar.url }}
+        source={{ uri: cart.productType.avatar.url }}
         imageStyle={{ borderRadius: 10 }}
       />
       <Content>
         <ProductTitleContainer>
-          <ProductTitle>{product.productType.name}</ProductTitle>
+          <ProductTitle>{cart.productType.name}</ProductTitle>
           <ProductSymbolQuantity>x</ProductSymbolQuantity>
-          <ProductQuantity>{product.quantity}</ProductQuantity>
+          <ProductQuantity>{cart.quantity}</ProductQuantity>
         </ProductTitleContainer>
         <SizeContainer>
           <SizeTitle>Tamanho:</SizeTitle>
           <SizeDescription>
-            {product.productPrice.productSize.name}
+            {cart.productPrice.productSize.name}
           </SizeDescription>
         </SizeContainer>
-        <Price>R$ {product.total}</Price>
+        <Price>{cart.totalPresentation}</Price>
       </Content>
       <Actions>
         <ActionDelete onPress={() => onPress(product)}>
-          <ActionDeleteIcon name="trash" size={20} color="red" />
+          <ActionDeleteIcon name="trash" size={25} color="red" />
         </ActionDelete>
       </Actions>
     </Item>

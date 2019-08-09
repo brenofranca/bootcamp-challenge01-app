@@ -33,6 +33,7 @@ export const Header = styled.View`
   height: 80px;
   align-items: center;
   flex-direction: row;
+  width: 100%;
 `;
 
 export const Refresh = styled.TouchableOpacity``;
@@ -44,6 +45,13 @@ export const Title = styled.Text`
   font-size: 18px;
   font-weight: bold;
   margin-left: 10px;
+  flex: 1;
+`;
+
+export const TotalPrice = styled.Text`
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: bold;
 `;
 
 export const Content = styled.View`

@@ -1,9 +1,7 @@
-import { put, call } from "redux-saga/effects";
-
-import api from "~/services/api";
+import { call, put } from "redux-saga/effects";
 import { Pages } from "~/routes";
+import api from "~/services/api";
 import { navigate } from "~/services/navigation";
-
 import { Creators as ProductSizes } from "~/store/ducks/product-sizes";
 
 export function* getProductSizes(action) {
@@ -16,11 +14,6 @@ export function* getProductSizes(action) {
     );
 
     data.forEach(item => {
-      price_casted = Number(item.price)
-        .toFixed(2)
-        .toLocaleString();
-
-      item.price_presentation = `R$ ${price_casted}`;
       item.avatar = item.productSize.images[0] || {};
     });
 
