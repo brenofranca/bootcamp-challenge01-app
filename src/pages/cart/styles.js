@@ -63,6 +63,7 @@ export const ButtonOrderFinish = styled.TouchableOpacity`
   border-radius: 15px;
   width: 170px;
   justify-content: space-around;
+  opacity: ${props => (props.isEmptyCart ? 0.3 : 1)};
 `;
 
 export const ButtonOrderFinishIcon = styled(Icon)``;

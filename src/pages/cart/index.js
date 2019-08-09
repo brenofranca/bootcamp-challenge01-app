@@ -2,6 +2,7 @@ import React from "react";
 import { StatusBar } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import EmptyList from "~/components/list-empty";
 import { Pages } from "~/routes/index";
 import { navigate } from "~/services/navigation";
 import { Creators as CartCreators } from "~/store/ducks/cart";
@@ -22,7 +23,7 @@ import {
   Title
 } from "./styles";
 
-const Cart = ({ navigation, cart }) => {
+const Cart = ({ cart, navigation, isEmptyCart }) => {
   return (
     <Main>
       <Container>
@@ -38,7 +39,17 @@ const Cart = ({ navigation, cart }) => {
           <Title>Carrinho</Title>
         </Header>
         <Content>
-          <CartProducts cart={cart.data} />
+          {isEmptyCart ? (
+            <EmptyList
+              data={{
+                message: "Você ainda não possui produtos no seu carrinho.",
+                icon: "frown-o",
+                color: "#FFF"
+              }}
+            />
+          ) : (
+            <CartProducts cart={cart.data} />
+          )}
         </Content>
         <Footer>
           <ButtonProductAdd
@@ -46,7 +57,7 @@ const Cart = ({ navigation, cart }) => {
           >
             <ButtonProductAddIcon name="cart-plus" size={17} color="#666" />
           </ButtonProductAdd>
-          <ButtonOrderFinish>
+          <ButtonOrderFinish disabled={isEmptyCart} isEmptyCart={isEmptyCart}>
             <ButtonOrderFinishText>Realizar Pedido</ButtonOrderFinishText>
             <ButtonOrderFinishIcon
               name="chevron-right"
@@ -61,7 +72,8 @@ const Cart = ({ navigation, cart }) => {
 };
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  isEmptyCart: !state.cart.data.total
 });
 
 const mapDispatchToProps = dispatch =>
