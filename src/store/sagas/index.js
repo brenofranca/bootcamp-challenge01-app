@@ -1,19 +1,14 @@
 import { all, takeLatest } from "redux-saga/effects";
-
-import { postLogin, postLoginAttempt } from "./login";
-import { Types as LoginTypes } from "~/store/ducks/login";
-
-import { getProductCategories } from "./product-categories";
-import { Types as ProductCategories } from "~/store/ducks/product-categories";
-
-import { getProductTypes } from "./product-types";
-import { Types as ProductTypes } from "~/store/ducks/product-types";
-
-import { getProductSizes } from "./product-sizes";
-import { Types as ProductSizes } from "~/store/ducks/product-sizes";
-
-import { addProductToCart } from "./cart";
 import { Types as CartTypes } from "~/store/ducks/cart";
+import { Types as LoginTypes } from "~/store/ducks/login";
+import { Types as ProductCategories } from "~/store/ducks/product-categories";
+import { Types as ProductSizes } from "~/store/ducks/product-sizes";
+import { Types as ProductTypes } from "~/store/ducks/product-types";
+import { addProductToCart, removeProductOfCart } from "./cart";
+import { postLogin, postLoginAttempt } from "./login";
+import { getProductCategories } from "./product-categories";
+import { getProductSizes } from "./product-sizes";
+import { getProductTypes } from "./product-types";
 
 export default function* rootSaga() {
   return yield all([
@@ -22,6 +17,7 @@ export default function* rootSaga() {
     takeLatest(ProductCategories.REQUEST, getProductCategories),
     takeLatest(ProductTypes.REQUEST, getProductTypes),
     takeLatest(ProductSizes.REQUEST, getProductSizes),
-    takeLatest(CartTypes.ADD_TO_CART, addProductToCart)
+    takeLatest(CartTypes.ADD_TO_CART, addProductToCart),
+    takeLatest(CartTypes.REMOVE_OF_CART, removeProductOfCart)
   ]);
 }

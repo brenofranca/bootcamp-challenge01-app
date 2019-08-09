@@ -1,13 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Creators as CartCreators } from "~/store/ducks/cart";
 import ListItem from "../item";
 import { Container, Items } from "./styles";
 
-const ProductCategoryList = ({ cart }) => {
-  _onProductDeletePressed = product => {
-    console.tron.log(product);
-  };
+const ProductList = ({ cart, removeProductOfCart }) => {
+  _onProductDeletePressed = ({ productPrice }) =>
+    removeProductOfCart(productPrice.id);
 
-  _keyExtractor = item => String(item.productPrice.id);
+  _keyExtractor = ({ productPrice }) => String(productPrice.id);
 
   _renderItem = ({ item }) => (
     <ListItem
@@ -28,4 +30,12 @@ const ProductCategoryList = ({ cart }) => {
   );
 };
 
-export default ProductCategoryList;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...CartCreators }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductList);

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StatusBar } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -23,8 +23,6 @@ import {
 } from "./styles";
 
 const Cart = ({ navigation, cart }) => {
-  useEffect(() => {}, []);
-
   return (
     <Main>
       <Container>
