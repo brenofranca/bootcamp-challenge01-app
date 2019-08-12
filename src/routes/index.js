@@ -9,6 +9,7 @@ export const Pages = {
   CartScreen: "Cart",
   ProductTypesScreen: "ProductTypes",
   ProductSizesScreen: "ProductSizes",
+  CartPlaceOrderScreen: "CartPlaceOrder",
   ProductCategoriesScreen: "ProductCategories"
 };
 

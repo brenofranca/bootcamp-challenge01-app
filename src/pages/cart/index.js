@@ -59,7 +59,11 @@ const Cart = ({ cart, navigation, isEmptyCart }) => {
           >
             <ButtonProductAddIcon name="cart-plus" size={17} color="#666" />
           </ButtonProductAdd>
-          <ButtonOrderFinish disabled={isEmptyCart} isEmptyCart={isEmptyCart}>
+          <ButtonOrderFinish
+            disabled={isEmptyCart}
+            isEmptyCart={isEmptyCart}
+            onPress={() => navigate(Pages.CartPlaceOrderScreen)}
+          >
             <ButtonOrderFinishText>Realizar Pedido</ButtonOrderFinishText>
             <ButtonOrderFinishIcon
               name="chevron-right"

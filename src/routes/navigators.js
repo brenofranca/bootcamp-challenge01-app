@@ -1,5 +1,6 @@
 import { createStackNavigator } from "react-navigation";
 import CartScreen from "~/pages/cart";
+import CartPlaceOrderScreen from "~/pages/cart-place-order";
 import ProductCategoriesScreen from "~/pages/product-categories";
 import ProductSizesScreen from "~/pages/product-sizes";
 import ProductTypesScreen from "~/pages/product-types";
@@ -30,7 +31,13 @@ const ProductsStackNavigation = createStackNavigator({
     navigationOptions: {
       header: null
     }
-  }
+  },
+  CartPlaceOrder: {
+    screen: CartPlaceOrderScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
 });
 
 const AccountStackNavigation = createStackNavigator({
