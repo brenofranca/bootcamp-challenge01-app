@@ -1,4 +1,4 @@
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator, createDrawerNavigator } from "react-navigation";
 import CartScreen from "~/pages/cart";
 import CartPlaceOrderScreen from "~/pages/cart-place-order";
 import ProductCategoriesScreen from "~/pages/product-categories";
@@ -40,6 +40,20 @@ const ProductsStackNavigation = createStackNavigator({
   }
 });
 
+const DrawerNavigator = createDrawerNavigator(
+  {
+    ProductsStack: ProductsStackNavigation
+  },
+  {
+    hideStatusBar: true,
+    drawerBackgroundColor: "rgba(255,255,255,.9)",
+    contentOptions: {
+      activeTintColor: "#fff",
+      activeBackgroundColor: "#0a2030"
+    }
+  }
+);
+
 const AccountStackNavigation = createStackNavigator({
   SignIn: {
     screen: SignInScreen,
@@ -57,7 +71,7 @@ const AccountStackNavigation = createStackNavigator({
 
 export const AppRoutes = {
   AccountStack: AccountStackNavigation,
-  ProductsStack: ProductsStackNavigation
+  ProductsStack: DrawerNavigator
 };
 
 export default AppRoutes;
