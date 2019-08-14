@@ -6,6 +6,7 @@ import ProductSizesScreen from "~/pages/product-sizes";
 import ProductTypesScreen from "~/pages/product-types";
 import SignInScreen from "~/pages/sign-in";
 import SignUpScreen from "~/pages/sign-up";
+import ProfileOrdersScreen from "~/pages/profile-orders";
 
 const ProductsStackNavigation = createStackNavigator({
   ProductCategories: {
@@ -42,7 +43,13 @@ const ProductsStackNavigation = createStackNavigator({
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    ProductsStack: ProductsStackNavigation
+    ProductsStack: ProductsStackNavigation,
+    ProfileOrders: {
+      screen: ProfileOrdersScreen,
+      navigationOptions: {
+        header: null
+      }
+    }
   },
   {
     hideStatusBar: true,

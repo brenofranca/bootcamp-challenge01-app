@@ -4,6 +4,7 @@ import { Pages } from "~/routes";
 import api from "~/services/api";
 import { navigate } from "~/services/navigation";
 import { Creators as CartTypes } from "~/store/ducks/cart";
+import { Creators as OrdersTypes } from "~/store/ducks/orders";
 
 export function* addProductToCart(action) {
   try {
@@ -127,6 +128,10 @@ export function* placeOrderCart(action) {
     const { data } = yield call(api.post, "/orders", order);
 
     yield put(CartTypes.ResetCart());
+
+    yield put(OrdersTypes.OrdersRequest());
+
+    yield AsyncStorage.removeItem("@cart");
 
     navigate(Pages.ProductCategoriesScreen);
   } catch (error) {

@@ -10,7 +10,8 @@ export const Pages = {
   ProductTypesScreen: "ProductTypes",
   ProductSizesScreen: "ProductSizes",
   CartPlaceOrderScreen: "CartPlaceOrder",
-  ProductCategoriesScreen: "ProductCategories"
+  ProductCategoriesScreen: "ProductCategories",
+  ProfileOrdersScreen: "ProfileOrders"
 };
 
 export default logged => {

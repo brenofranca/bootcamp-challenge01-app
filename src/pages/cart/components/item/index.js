@@ -38,7 +38,7 @@ const ListItem = ({ onPress, cart }) => {
         <Price>{cart.totalPresentation}</Price>
       </Content>
       <Actions>
-        <ActionDelete onPress={() => onPress(product)}>
+        <ActionDelete onPress={() => onPress(cart)}>
           <ActionDeleteIcon name="trash" size={25} color="red" />
         </ActionDelete>
       </Actions>
