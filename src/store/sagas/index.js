@@ -4,7 +4,7 @@ import { Types as LoginTypes } from "~/store/ducks/login";
 import { Types as ProductCategories } from "~/store/ducks/product-categories";
 import { Types as ProductSizes } from "~/store/ducks/product-sizes";
 import { Types as ProductTypes } from "~/store/ducks/product-types";
-import { addProductToCart, removeProductOfCart } from "./cart";
+import { addProductToCart, placeOrderCart, removeProductOfCart } from "./cart";
 import { postLogin, postLoginAttempt } from "./login";
 import { getProductCategories } from "./product-categories";
 import { getProductSizes } from "./product-sizes";
@@ -18,6 +18,7 @@ export default function* rootSaga() {
     takeLatest(ProductTypes.REQUEST, getProductTypes),
     takeLatest(ProductSizes.REQUEST, getProductSizes),
     takeLatest(CartTypes.ADD_TO_CART, addProductToCart),
-    takeLatest(CartTypes.REMOVE_OF_CART, removeProductOfCart)
+    takeLatest(CartTypes.REMOVE_OF_CART, removeProductOfCart),
+    takeLatest(CartTypes.PLACE_ORDER, placeOrderCart)
   ]);
 }

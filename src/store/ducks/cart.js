@@ -3,8 +3,10 @@ import Immutable from "seamless-immutable";
 export const Types = {
   ADD_TO_CART: "cart/ADD_TO_CART",
   REMOVE_OF_CART: "cart/REMOVE_OF_CART",
+  RESET_CART: "cart/RESET_CART",
   SUCCESS: "cart/SUCCESS",
-  FAILURE: "cart/FAILURE"
+  FAILURE: "cart/FAILURE",
+  PLACE_ORDER: "cart/PLACE_ORDER"
 };
 
 const initialState = Immutable({
@@ -20,7 +22,10 @@ export default function cart(state = initialState, action) {
   switch (action.type) {
     case Types.REMOVE_OF_CART:
     case Types.ADD_TO_CART:
+    case Types.PLACE_ORDER:
       return { ...state, processing: true };
+    case Types.RESET_CART:
+      return { ...state, ...initialState };
     case Types.SUCCESS:
       return {
         ...state,
@@ -46,6 +51,16 @@ export const Creators = {
   removeProductOfCart: product_price_id => ({
     type: Types.REMOVE_OF_CART,
     payload: { product_price_id }
+  }),
+
+  ResetCart: () => ({
+    type: Types.RESET_CART,
+    payload: {}
+  }),
+
+  placeOrderCart: data => ({
+    type: Types.PLACE_ORDER,
+    payload: { data }
   }),
 
   RefreshDataCart: data => ({

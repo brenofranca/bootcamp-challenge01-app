@@ -37,7 +37,7 @@ const ProductsStackNavigation = createStackNavigator({
     navigationOptions: {
       header: null
     }
-  },
+  }
 });
 
 const AccountStackNavigation = createStackNavigator({

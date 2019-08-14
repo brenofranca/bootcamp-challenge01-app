@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { put, select } from "redux-saga/effects";
+import { put, select, call } from "redux-saga/effects";
 import { Pages } from "~/routes";
+import api from "~/services/api";
 import { navigate } from "~/services/navigation";
 import { Creators as CartTypes } from "~/store/ducks/cart";
 
@@ -103,6 +104,33 @@ export function* removeProductOfCart(action) {
     yield AsyncStorage.setItem("@cart", JSON.stringify(cart));
   } catch (error) {
     yield put(CartTypes.Failure());
+  }
+}
+
+export function* placeOrderCart(action) {
+  try {
+    const { data: cart } = yield select(state => state.cart);
+
+    const products = cart.products.map(item => {
+      return {
+        total: item.total,
+        quantity: item.quantity,
+        product_id: item.productCategory.id,
+        product_type_id: item.productType.id,
+        product_price_id: item.productPrice.id,
+        product_size_id: item.productPrice.productSize.id
+      };
+    });
+
+    const order = { ...action.payload.data, total: cart.total, products };
+
+    const { data } = yield call(api.post, "/orders", order);
+
+    yield put(CartTypes.ResetCart());
+
+    navigate(Pages.ProductCategoriesScreen);
+  } catch (error) {
+    console.tron.log("error");
   }
 }
 

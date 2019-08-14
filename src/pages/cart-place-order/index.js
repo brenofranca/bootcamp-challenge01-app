@@ -25,8 +25,15 @@ import {
   TotalPrice
 } from "./styles";
 
-const CartPlaceOrder = ({ cart, navigation, isEmptyCart }) => {
-  const [form, setForm] = useState({});
+const CartPlaceOrder = ({ cart, navigation, isEmptyCart, placeOrderCart }) => {
+  const [form, setForm] = useState({
+    observation: "Teste",
+    cep: "60763777",
+    address: "Rua 7",
+    number: "298",
+    district: "Fortaleza",
+    state: "CE"
+  });
 
   return (
     <Main>
@@ -77,7 +84,7 @@ const CartPlaceOrder = ({ cart, navigation, isEmptyCart }) => {
                   autoCorrect={false}
                   placeholder="Rua"
                   underlineColorAndroid="transparent"
-                  value={form.observation}
+                  value={form.address}
                   onChangeText={text => setForm({ ...form, text })}
                 />
                 <InputNumber
@@ -85,7 +92,7 @@ const CartPlaceOrder = ({ cart, navigation, isEmptyCart }) => {
                   autoCorrect={false}
                   placeholder="Nº"
                   underlineColorAndroid="transparent"
-                  value={form.observation}
+                  value={form.number}
                   onChangeText={text => setForm({ ...form, text })}
                 />
               </Row>
@@ -94,10 +101,10 @@ const CartPlaceOrder = ({ cart, navigation, isEmptyCart }) => {
                 autoCorrect={false}
                 placeholder="Bairro"
                 underlineColorAndroid="transparent"
-                value={form.observation}
+                value={form.district}
                 onChangeText={text => setForm({ ...form, text })}
               />
-              <ButtonOrderFinish>
+              <ButtonOrderFinish onPress={() => placeOrderCart(form)}>
                 <ButtonOrderFinishText>Finalizar</ButtonOrderFinishText>
                 <ButtonOrderFinishIcon />
               </ButtonOrderFinish>
