@@ -8,7 +8,7 @@ export default {
   black: "#000",
 
   primary: "#0a2030",
-  secondary: "#0a2030",
+  secondary: "#133c5a",
   success: "#9DCA83",
   danger: "#E37A7A",
   error: "rgba(165, 36, 32, 1)",

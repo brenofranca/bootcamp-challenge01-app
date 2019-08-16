@@ -7,6 +7,7 @@ import ProductTypesScreen from "~/pages/product-types";
 import SignInScreen from "~/pages/sign-in";
 import SignUpScreen from "~/pages/sign-up";
 import ProfileOrdersScreen from "~/pages/profile-orders";
+import DrawerMenu from "~/components/drawer-menu";
 
 const ProductsStackNavigation = createStackNavigator({
   ProductCategories: {
@@ -43,21 +44,22 @@ const ProductsStackNavigation = createStackNavigator({
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    ProductsStack: ProductsStackNavigation,
+    ProductsStack: {
+      screen: ProductsStackNavigation,
+      navigationOptions: {
+        drawerLabel: "Categorias"
+      }
+    },
     ProfileOrders: {
       screen: ProfileOrdersScreen,
       navigationOptions: {
+        drawerLabel: "Meus Pedidos",
         header: null
       }
     }
   },
   {
-    hideStatusBar: true,
-    drawerBackgroundColor: "rgba(255,255,255,.9)",
-    contentOptions: {
-      activeTintColor: "#fff",
-      activeBackgroundColor: "#0a2030"
-    }
+    contentComponent: DrawerMenu
   }
 );
 
